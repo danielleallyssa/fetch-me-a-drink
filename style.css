@@ -56,6 +56,7 @@ h2 {
   font-family: var(--font-bold);
   font-size: 3.75rem;
   line-height: 1.15;
+  margin: 3rem 0 2rem;
 }
 
 h3 {
@@ -87,6 +88,19 @@ input {
   border-bottom: #000 1px solid;
 }
 
+input::-webkit-input-placeholder {
+  font-family: var(--font-main);
+}
+input::-moz-placeholder {
+  font-family: var(--font-main);
+}
+input:-ms-input-placeholder {
+  font-family: var(--font-main);
+}
+input:-moz-placeholder {
+  font-family: var(--font-main);
+}
+
 button {
   border: none;
   background: #000;
@@ -108,7 +122,7 @@ button#random {
 
 .input--container button {
   font-size: 0.8rem;
-  padding: 0.25rem 1rem;
+  padding: 0.5rem 1rem;
   margin-left: 10px;
 }
 
@@ -117,6 +131,7 @@ button#random {
 /*******************************************/
 header,
 footer,
+.input--container,
 .main--container,
 .subcat--container,
 .drink-content {
@@ -124,6 +139,7 @@ footer,
 }
 
 header {
+  gap: 2rem;
   align-items: center;
   justify-content: space-between;
 }
@@ -138,8 +154,29 @@ footer {
   justify-content: space-evenly;
 }
 
+.image--container,
+.content--container {
+  width: 50%;
+  height: 100vh;
+}
+
+.input--container {
+  flex-flow: row nowrap;
+}
+
+.content--container {
+  padding: 1rem 3rem;
+}
+
 .subcat-col {
   width: calc(100% / 3);
+}
+
+.divider {
+  height: 1px;
+  background: #000;
+  width: 100%;
+  margin: 2rem 0 1rem;
 }
 
 .content-col:first-of-type {
@@ -147,16 +184,6 @@ footer {
 }
 .content-col:last-of-type {
   width: 60%;
-}
-
-.image--container,
-.content--container {
-  width: 50%;
-  height: 100vh;
-}
-
-.content--container {
-  padding: 1rem 3rem;
 }
 
 img {
@@ -168,3 +195,34 @@ img {
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+
+@media screen and (max-width: 999px) {
+  body {
+    overflow: visible;
+  }
+
+  .main--container {
+    flex-direction: column;
+  }
+
+  .image--container,
+  .content--container,
+  footer {
+    width: 100%;
+  }
+
+  footer {
+    position: relative;
+  }
+
+  .image--container {
+    height: 20vh;
+  }
+
+  .content--container {
+    height: auto;
+  }
+  .content--container {
+    sort: -1;
+  }
+}
