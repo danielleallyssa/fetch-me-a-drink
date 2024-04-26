@@ -8,31 +8,65 @@
     <title>Fetch Me A Drink - Cocktail Database</title>
 
     <!-- external CSS link -->
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/jhl7exy.css" />
   </head>
   <body>
     <div class="main--container">
       <div class="image--container"><img src="" alt="" /></div>
       <div class="content--container">
         <header>
-          <h1>Which Cocktail?</h1>
+          <h1>Fetch Me A Drink</h1>
           <div class="input--container">
-            <input type="text" name="" value="" />
-            <button type="button" name="button">Get Cocktail</button>
+            <input type="text" name="" value="" placeholder="Martini" />
+            <button type="button" name="button">Fetch Cocktail</button>
           </div>
         </header>
         <main>
-          <h2>Name</h2>
-
-          <h3>Instructions</h3>
-          <p class="instructions"></p>
-          <button id="last">Previous</button>
-          <button id="next">Next</button>
+          <section>
+            <h2>Name</h2>
+            <div class="subcat--container">
+              <div class="subcat-col">
+                <span class="subcat--heading">Type</span>
+                <h4 class="subcat--content" id="drink-type">Test</h4>
+              </div>
+              <div class="subcat-col">
+                <span class="subcat--heading">Category</span>
+                <h4 class="subcat--content" id="drink-category">Test</h4>
+              </div>
+              <div class="subcat-col">
+                <span class="subcat--heading">Glassware</span>
+                <h4 class="subcat--content" id="drink-glass">Test</h4>
+              </div>
+            </div>
+          </section>
+          <section class="drink-content">
+            <div class="content-col">
+              <h3>Ingredients</h3>
+              <ul>
+                <li>5cl Vodka</li>
+                <li>5cl Vodka</li>
+              </ul>
+            </div>
+            <div class="content-col">
+              <h3>Instructions</h3>
+              <p class="instructions">
+                Shake a tall glass with ice cubes and Angostura, coating the
+                inside of the glass. Por the vodka onto this, add 1 slice of
+                lime and squeeze juice out of remainder, mix with tonic, stir
+                and voila you have a Long Vodka
+              </p>
+            </div>
+          </section>
         </main>
+        <footer>
+          <button id="prev">Back</button>
+          <button id="random">I'm not picky</button>
+          <button id="next">Next</button>
+        </footer>
       </div>
     </div>
 
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="main.js"></script>
   </body>
 </html>

@@ -2,7 +2,7 @@
 
 // Input
 let button = document.querySelector("button");
-let last = document.querySelector("#last");
+let last = document.querySelector("#prev");
 let next = document.querySelector("#next");
 
 // Output
