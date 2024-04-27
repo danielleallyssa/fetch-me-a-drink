@@ -70,6 +70,7 @@ h2 {
   font-size: 3.5rem;
   line-height: 1.15;
   margin: 3rem 0 2rem;
+  overflow-wrap: break-word;
 }
 
 h3 {
@@ -192,6 +193,10 @@ footer {
   padding: 1rem 3rem;
 }
 
+.drink-content {
+  column-gap: 2rem;
+}
+
 .subcat-col {
   width: calc(100% / 3);
 }
@@ -252,16 +257,22 @@ img {
 }
 
 @media screen and (max-width: 649px) {
-  section.drink-content {
+  section.drink-content,
+  header {
     flex-direction: column;
+  }
+
+  header {
+    gap: 0.5rem;
   }
 
   .drink-content div.content-col {
     width: 100%;
   }
 
-  h2.slideup {
+  h2 {
     font-size: 2.75rem;
+    text-align: center;
   }
 
   footer {
