@@ -67,7 +67,7 @@ h1 {
 
 h2 {
   font-family: var(--font-bold);
-  font-size: 3.75rem;
+  font-size: 3.5rem;
   line-height: 1.15;
   margin: 3rem 0 2rem;
 }
@@ -248,5 +248,27 @@ img {
   }
   .content--container {
     order: -1;
+  }
+}
+
+@media screen and (max-width: 649px) {
+  section.drink-content {
+    flex-direction: column;
+  }
+
+  .drink-content div.content-col {
+    width: 100%;
+  }
+
+  h2.slideup {
+    font-size: 2.75rem;
+  }
+
+  footer {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .content--container {
+    padding: 1rem;
   }
 }
