@@ -36,7 +36,7 @@ document.addEventListener("keyup", function (e) {
     getRandomCocktail();
   }
 
-  console.log(e);
+  // console.log(e);
 });
 
 // Functions
@@ -45,6 +45,11 @@ function getCocktail() {
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${userInput}`)
     .then((res) => res.json()) // parse response as JSON
     .then((data) => {
+      if (i < 0) {
+        i = data.drinks.length - 1;
+      } else if (i > data.drinks.length - 1) {
+        i = 0;
+      }
       let drinkEl = data.drinks[i];
 
       title.innerText = drinkEl.strDrink;
