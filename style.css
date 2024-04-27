@@ -20,6 +20,17 @@
     url("fonts/Coconat-Bold.woff2") format("woff2");
 }
 
+@keyframes slideup {
+  from {
+    opacity: 0;
+    transform: translateY(5%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
 :root {
   --font-reg: "Coconat-Regular";
   --font-demi: "Coconat-Demi";
@@ -27,6 +38,8 @@
   --font-main: "nimbus-sans", sans-serif;
 
   --font-size-main: 16px;
+
+  --ease-out: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* Box Model Hack */
@@ -49,7 +62,7 @@ body {
 
 h1 {
   font-family: var(--font-demi);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 h2 {
@@ -112,6 +125,7 @@ button {
   font-weight: 300;
   padding: 0.5rem 1.5rem;
   border-radius: 50px;
+  transition: transform 0.3s var(--ease-out);
 }
 
 button#random {
@@ -124,6 +138,16 @@ button#random {
   font-size: 0.8rem;
   padding: 0.5rem 1rem;
   margin-left: 10px;
+}
+
+button:hover {
+  transform: scale(0.95);
+}
+
+.slideup {
+  animation-name: slideup;
+  animation-duration: 0.5s;
+  animation-timing-function: var(--ease-out);
 }
 
 /******************************************
@@ -216,13 +240,13 @@ img {
   }
 
   .image--container {
-    height: 20vh;
+    height: 40vh;
   }
 
   .content--container {
     height: auto;
   }
   .content--container {
-    sort: -1;
+    order: -1;
   }
 }
