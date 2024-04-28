@@ -183,7 +183,7 @@ footer {
   right: 0;
   padding: 1rem 3rem;
 
-  background: white;
+  background: var(--color-secondary);
 
   height: var(--height-main-desktop);
   width: 50%;
@@ -206,6 +206,7 @@ footer {
   bottom: 0;
   justify-content: space-evenly;
   border-top: var(--border-main);
+  flex-flow: row wrap;
   /* background: pink; */
 }
 
