@@ -28,19 +28,47 @@ random.addEventListener("click", getRandomCocktail);
 
 // Keyup events
 document.addEventListener("keyup", function (e) {
-  if (e.code === "ArrowLeft" || e.code === "ArrowDown") {
+  if (e.code === "ArrowLeft") {
     goBack();
-  } else if (e.code === "ArrowRight" || e.code === "ArrowUp") {
+  } else if (e.code === "ArrowRight") {
     goNext();
+  } else if (e.code === "ArrowDown" || e.code === "ArrowUp") {
+    getRandomCocktail();
   } else if (e.code === "Enter") {
     getCocktail();
   }
-
-  // console.log(e);
 });
 
 // Functions
 
+// Returns array for certain object values, based on their property name
+function getObjValues(obj, str) {
+  // Filter function for filter method
+  const filterByProp = (x, str) => x[0].includes(str) && x[1];
+
+  const arrOfValuePairs = Object.entries(obj);
+  const requestedPairs = arrOfValuePairs.filter((x) => filterByProp(x, str));
+  const requestedValues = requestedPairs.map((x) => x[1]);
+  return requestedValues;
+}
+
+// clears UL inner HTML and adds each <ingredient> as li element
+function addIngredListItems(obj) {
+  const ingredArr = getObjValues(obj, "Ingredient");
+  const measureArr = getObjValues(obj, "Measure");
+
+  ingredientsEl.innerHTML = "";
+
+  for (i = 0; i < ingredArr.length; i++) {
+    if (!measureArr[i]) measureArr[i] = "".trim();
+    ingredientsEl.insertAdjacentHTML(
+      "beforeend",
+      `<li>${measureArr[i]} ${ingredArr[i]}</li>`
+    );
+  }
+}
+
+// Swaps out all DOM content
 function swapContent(obj) {
   titleEl.innerText = obj.strDrink;
   imageEl.src = obj.strDrinkThumb;
@@ -48,6 +76,8 @@ function swapContent(obj) {
   typeEl.innerText = obj.strAlcoholic;
   categoryEl.innerText = obj.strCategory;
   glassEl.innerText = obj.strGlass;
+
+  addIngredListItems(obj);
 }
 
 function getCocktail() {
@@ -62,11 +92,7 @@ function getCocktail() {
       }
 
       const drinkObj = data.drinks[i];
-
       swapContent(drinkObj);
-      addListItems();
-
-      // console.log(data.drinks[i]);
     })
     .catch((err) => {
       console.log(`error ${err}`);
@@ -77,38 +103,8 @@ function getRandomCocktail() {
   fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
     .then((res) => res.json())
     .then((data) => {
-      // Filter function for filter method
-      const filterByProp = (x, str) => x[0].includes(str) && x[1];
-
-      // Main drink object and 2D array of its key:values as elements
+      // Main drink object
       const randomDrinkObj = data.drinks[0];
-      const drinkEntries = Object.entries(randomDrinkObj);
-
-      // 2D array of elements that have values and contain Ingredient
-      const ingredEntries = drinkEntries.filter((x) =>
-        filterByProp(x, "Ingredient")
-      );
-      // Array of ingredients
-      const ingredArr = ingredEntries.map((x) => x[1]);
-
-      // 2D array of elements that have values and contain Measure
-      const measureEntries = drinkEntries.filter((x) =>
-        filterByProp(x, "Measure")
-      );
-
-      // Array of ingredients
-      const measureArr = measureEntries.map((x) => x[1]);
-
-      ingredientsEl.innerHTML = "";
-
-      for (i = 0; i < ingredArr.length; i++) {
-        if (!measureArr[i]) measureArr[i] = "".trim();
-        ingredientsEl.insertAdjacentHTML(
-          "beforeend",
-          `<li>${measureArr[i]} ${ingredArr[i]}</li>`
-        );
-      }
-
       swapContent(randomDrinkObj);
     })
     .catch((err) => {

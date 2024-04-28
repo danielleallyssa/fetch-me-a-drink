@@ -236,7 +236,7 @@ main {
   top: 0;
   border-right: var(--border-main);
 
-  background: var(--color-bg-2);
+  background: linear-gradient(161deg, rgb(17 59 60), rgb(17 59 60 / 30%));
 
   align-items: center;
   justify-content: center;
