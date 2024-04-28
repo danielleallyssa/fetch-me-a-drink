@@ -274,6 +274,7 @@ img {
   width: 70%;
   height: 70%;
   object-fit: cover;
+  background: var(--color-bg-1);
   border: var(--border-light);
   border-radius: 38% 0 38% 0;
 }
