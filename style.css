@@ -38,8 +38,16 @@
   --font-main: "nimbus-sans", sans-serif;
 
   --font-size-main: 16px;
+  --height-main-desktop: 11vh;
 
-  --ease-out: cubic-bezier(0.25, 1, 0.5, 1);
+  --color-primary: rgba(0, 0, 0, 1);
+  --color-primary-50: rgba(0, 0, 0, 0.5);
+  --color-secondary: rgba(255, 255, 255, 1);
+  --color-none: rgba(255, 255, 255, 0);
+
+  --border-main: solid 1px var(--color-primary);
+
+  --transition-ease-out: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* Box Model Hack */
@@ -47,35 +55,34 @@
   box-sizing: border-box;
 }
 
-html {
-  font-size: var(--font-size-main);
-}
-
 body {
+  font-size: var(--font-size-main);
   font-family: var(--font-main);
   font-weight: 300;
 
   margin: 0;
   height: 100vh;
-  overflow: hidden;
 }
 
-h1 {
+h1,
+h3 {
   font-family: var(--font-demi);
+}
+h1 {
   font-size: 1.25rem;
 }
 
 h2 {
   font-family: var(--font-bold);
-  font-size: 3.5rem;
+  font-size: 3rem;
   line-height: 1.15;
   margin: 3rem 0 2rem;
   overflow-wrap: break-word;
 }
 
 h3 {
-  font-family: var(--font-demi);
   font-size: 1.75rem;
+  margin-bottom: 0.5rem;
 }
 
 h4 {
@@ -93,33 +100,39 @@ ul {
 }
 
 li {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
   list-style: none;
 }
 
 input {
   border: none;
   border-radius: 0px;
-  border-bottom: #000 1px solid;
+  border-bottom: var(--border-main);
+  background: rgba(255, 255, 255, 0);
 }
 
 input::-webkit-input-placeholder {
   font-family: var(--font-main);
+  color: var(--color-primary-50);
 }
 input::-moz-placeholder {
   font-family: var(--font-main);
+  color: var(--color-primary-50);
 }
 input:-ms-input-placeholder {
   font-family: var(--font-main);
+  color: var(--color-primary-50);
 }
 input:-moz-placeholder {
   font-family: var(--font-main);
+  color: var(--color-primary-50);
 }
 
 button {
   border: none;
-  background: #000;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-secondary);
 
   text-transform: uppercase;
   font-size: var(--font-size-main);
@@ -127,19 +140,18 @@ button {
   font-weight: 300;
   padding: 0.5rem 1.5rem;
   border-radius: 50px;
-  transition: transform 0.3s var(--ease-out);
+  transition: transform 0.3s var(--transition-ease-out);
 }
 
 button#random {
   background: none;
-  border: #000 1px solid;
-  color: #000;
+  border: var(--border-main);
+  color: var(--color-primary);
 }
 
 .input--container button {
   font-size: 0.8rem;
   padding: 0.5rem 1rem;
-  margin-left: 10px;
 }
 
 button:hover {
@@ -149,7 +161,7 @@ button:hover {
 .slideup {
   animation-name: slideup;
   animation-duration: 0.5s;
-  animation-timing-function: var(--ease-out);
+  animation-timing-function: var(--transition-ease-out);
 }
 
 /******************************************
@@ -164,38 +176,68 @@ footer,
   display: flex;
 }
 
-header {
-  gap: 2rem;
+header,
+footer {
+  z-index: 5;
+  position: fixed;
+  right: 0;
+  padding: 1rem 3rem;
+
+  background: white;
+
+  height: var(--height-main-desktop);
+  width: 50%;
+
   align-items: center;
+}
+
+header,
+.drink-content {
+  column-gap: 2rem;
+}
+
+header {
+  top: 0;
   justify-content: space-between;
+  border-bottom: var(--border-main);
 }
 
 footer {
-  position: fixed;
   bottom: 0;
-  right: 0;
-  width: 50%;
-  padding: 3rem 3rem;
-
   justify-content: space-evenly;
+  border-top: var(--border-main);
+  /* background: pink; */
+}
+
+main {
+  /* padding: 0.25rem 0; */
+}
+
+.main--container {
+  position: relative;
 }
 
 .image--container,
 .content--container {
   width: 50%;
+}
+
+.image--container {
   height: 100vh;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  border-right: var(--border-main);
 }
 
 .input--container {
   flex-flow: row nowrap;
+  gap: 0.75rem;
 }
 
 .content--container {
+  margin: var(--height-main-desktop) 0;
   padding: 1rem 3rem;
-}
-
-.drink-content {
-  column-gap: 2rem;
 }
 
 .subcat-col {
@@ -204,7 +246,7 @@ footer {
 
 .divider {
   height: 1px;
-  background: #000;
+  background: var(--color-primary);
   width: 100%;
   margin: 2rem 0 1rem;
 }
@@ -227,33 +269,34 @@ img {
 /*******************************************/
 
 @media screen and (max-width: 999px) {
-  body {
-    overflow: visible;
-  }
-
   .main--container {
     flex-direction: column;
   }
 
+  header,
+  footer,
   .image--container,
-  .content--container,
-  footer {
+  .content--container {
     width: 100%;
   }
 
-  footer {
-    position: relative;
+  .main--container {
+    margin: calc(var(--height-main-desktop)) 0;
   }
 
   .image--container {
+    position: relative;
     height: 40vh;
+    border-right: 0;
+    border-bottom: var(--border-main);
   }
 
   .content--container {
+    margin-top: 0;
     height: auto;
   }
   .content--container {
-    order: -1;
+    /* order: -1; */
   }
 }
 
@@ -263,8 +306,15 @@ img {
     flex-direction: column;
   }
 
+  header,
+  footer {
+    padding: 1rem 0.5rem;
+  }
+
   header {
-    gap: 0.5rem;
+    row-gap: 0.5rem;
+    height: 15vh;
+    justify-content: flex-start;
   }
 
   .drink-content div.content-col {
@@ -272,15 +322,25 @@ img {
   }
 
   h2 {
-    font-size: 2.75rem;
+    font-size: 2rem;
     text-align: center;
+    margin: 1rem 0 2rem;
   }
 
-  footer {
-    padding: 1.5rem 0.5rem;
+  h3 {
+    font-size: 1.5rem;
   }
 
   .content--container {
     padding: 1rem;
+  }
+
+  .subcat-col {
+    text-align: center;
+  }
+
+  .input--container {
+    flex-flow: row wrap;
+    justify-content: center;
   }
 }

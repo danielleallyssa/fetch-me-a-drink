@@ -32,11 +32,12 @@ document.addEventListener("keyup", function (e) {
     goNext();
   } else if (e.code === "Enter") {
     getCocktail();
-  } else if (e.code === "Space") {
-    getRandomCocktail();
   }
+  // else if (e.code === "Space") {
+  //   getRandomCocktail();
+  // }
 
-  // console.log(e);
+  console.log(e);
 });
 
 // Functions
