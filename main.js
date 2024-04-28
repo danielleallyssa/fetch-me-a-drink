@@ -59,11 +59,11 @@ function addIngredListItems(obj) {
 
   ingredientsEl.innerHTML = "";
 
-  for (i = 0; i < ingredArr.length; i++) {
-    if (!measureArr[i]) measureArr[i] = "".trim();
+  for (y = 0; y < ingredArr.length; y++) {
+    if (!measureArr[y]) measureArr[y] = "".trim();
     ingredientsEl.insertAdjacentHTML(
       "beforeend",
-      `<li>${measureArr[i]} ${ingredArr[i]}</li>`
+      `<li>${measureArr[y]} ${ingredArr[y]}</li>`
     );
   }
 }
@@ -93,6 +93,8 @@ function getCocktail() {
 
       const drinkObj = data.drinks[i];
       swapContent(drinkObj);
+
+      console.log(data.drinks.length);
     })
     .catch((err) => {
       console.log(`error ${err}`);
